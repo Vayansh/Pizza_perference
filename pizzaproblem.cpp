@@ -24,11 +24,12 @@ class customerin{
         }
         void input_like()
         {
-            for(int i=0; i<likes; i++){
+            for(int i=0; i<likes; i++)
+            {
                 cin >> *(like_ing+i);
             }
         }  
-         void put_dislike(int i)
+        void put_dislike(int i)
         {    
             dislikes = i;
             dislike_ing = new string[dislikes];
@@ -37,15 +38,28 @@ class customerin{
         {
             return dislikes;
         }
+        string get_dislike_ing(int i)
+        {
+            return dislike_ing[i];
+        }
         void input_dislike()
         {
-            for(int i=0; i<dislikes; i++){
+            for(int i=0; i<dislikes; i++)
+            {
                 cin >> *(dislike_ing+i);
             }
         }  
         
 };
-
+bool check(string str,int j,string total_dislike[])
+{
+    for(int i=0;i<j;i++)
+    {
+        if(total_dislike[i]==str)
+           return 0;   
+    }
+    return 1;
+}
 
 int main()
 {
@@ -56,27 +70,48 @@ int main()
     int var=0;
     customerin customerpref[n];
     
-    for(int i=0; i<n;i++){
+    for(int i=0; i<n;i++)
+    {
         cin>>likes;
         customerpref[i].put_like(likes);
         customerpref[i].input_like();
         cout << endl;
         cin >> dislikes;
         var+=dislikes;
-        customerpref[i].put_dislike(likes);
+        customerpref[i].put_dislike(dislikes);
         customerpref[i].input_dislike();
         cout << endl;
     }
-    
+    int pos = 0;
     string total_dislike[var];
     for(int i =0;i<n;i++)
     {   
         for(int j=0;j<customerpref[i].get_dislike();j++)
-        if(customerpref[i].)
+        {
+            total_dislike[pos]=customerpref[i].get_dislike_ing(j);
+            pos++;
+        }
     }
+    int tot = 0;
+    string final_ing[var];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<customerpref[i].get_like();j++)
+        {
+            if(check(customerpref[i].get_like_ing(j),var,total_dislike)==1)
+            {
+                final_ing[tot] = customerpref[i].get_like_ing(j);
+                tot ++;    
+            }
+            else
+                continue;
+        }
+    }
+    cout << tot << endl;
+    for(int i=0;i<tot;i++)
+    {
+        cout << final_ing[i] << " ";
+    }
+
     return 0;
 }
-
-[1,2,3]
-
-
