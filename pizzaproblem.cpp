@@ -51,14 +51,23 @@ class customerin{
         }  
         
 };
+bool check(string str,string final_ing[],int j)
+{
+    for(int i=0;i<j;i++)
+    {
+        if(final_ing[i]==str)
+           return true;   
+    }
+    return false;
+}
 bool check(string str,int j,string total_dislike[])
 {
     for(int i=0;i<j;i++)
     {
         if(total_dislike[i]==str)
-           return 0;   
+           return false;   
     }
-    return 1;
+    return true;
 }
 
 int main()
@@ -93,12 +102,16 @@ int main()
         }
     }
     int tot = 0;
-    string final_ing[var];
+    string final_ing[5*n];
     for(int i=0;i<n;i++)
     {
         for(int j=0;j<customerpref[i].get_like();j++)
         {
-            if(check(customerpref[i].get_like_ing(j),var,total_dislike)==1)
+            if(check(customerpref[i].get_like_ing(j),final_ing,tot))
+            {
+                continue;
+            }
+            if(check(customerpref[i].get_like_ing(j),var,total_dislike))
             {
                 final_ing[tot] = customerpref[i].get_like_ing(j);
                 tot ++;    
